@@ -1,18 +1,22 @@
 Bit bucket url for copying data from repository to local machine to create the new build.
-
+============================================================================================
 git@bitbucket.org:qmsminsk/qmsangular.git
+
+mimran.hameed@yahoo.com/random99*
+
 
 
 DEFINE THE BRANCH TO CLONE THE DATA.
-Branch Specifier (blank for 'any')  :  Branch Specifier (blank for 'any')
+=====================================
+Branch Specifier (blank for 'any')  :  */jenkin_branch
 
 
 COMMAND TO ADD NEWLY ADDED PACKAGES 
-
+====================================
 npm run-script build
 
 SCRIPT TO ADD THE TAKE THE BUILD BACK UP AND COPY NEW BUILD IN THE HTML FOLDER 
-
+===============================================================================
 @echo off
 
 for /f "tokens=1-4 delims=,: " %%i in ("%time%") do (
@@ -31,6 +35,8 @@ set year=%%k
 
 xcopy "D:\Automation\AMOS WEB Quality\html" "d:\BuildBackup\%year%%month%%day%%hour%%minute%" /i
 
+
 DEPLOY THE NEWLY CREATED BUILD
+==============================
 xcopy "D:\Automation\workspace\FEFreeStyle\dist\QMS" "D:\Automation\AMOS WEB Quality\html" /y
 
