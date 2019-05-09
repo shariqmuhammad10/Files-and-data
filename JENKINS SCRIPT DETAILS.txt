@@ -40,3 +40,40 @@ DEPLOY THE NEWLY CREATED BUILD
 ==============================
 xcopy "D:\Automation\workspace\FEFreeStyle\dist\QMS" "D:\Automation\AMOS WEB Quality\html" /y
 
+
+
+npm install
+
+@echo =======================================
+@echo CREATE THE NEW BUILD USING LATEST CODE
+@echo =======================================
+
+npm run-script build
+
+@echo =======================================================
+@echo CREATE BACKUP FOLDER AND TAKE THE PREVIOUS BUILD BACKUP 
+@echo =======================================================
+@echo off
+
+for /f "tokens=1-4 delims=,: " %%i in ("%time%") do (
+set hour=%%i
+set minute=%%j
+set second=%%k
+set hundredth=%%l
+)
+
+
+for /f "tokens=1-4 delims=/ " %%i in ("%date%") do (
+set day=%%i
+set month=%%j
+set year=%%k
+)
+
+xcopy "C:\nginx\html" "C:\BackupBuild\TestServer\%year%%month%%day%%hour%%minute%" /i /s
+
+@echo ==============================
+@echo DEPLOY THE NEWLY CREATED BUILD
+@echo ==============================
+
+xcopy "C:\Imran\WorkSpace\Master_Deployment_on_TestServer\dist\QMS" "C:\nginx\html12" /y/s
+
